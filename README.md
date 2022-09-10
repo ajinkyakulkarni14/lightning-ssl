@@ -1,6 +1,5 @@
 
 ## **Self-Supervised Learning (BYOL+DINO) with PyTorch Lightning**
-----
 Pytorch-Lightning implementation of two of the most important self-supervised learning techniques: 
 
 * **BYOL** ([`paper`](https://arxiv.org/pdf/2006.07733.pdf), [`repository`](https://github.com/deepmind/deepmind-research/tree/master/byol))
@@ -36,6 +35,9 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 * custom_vit_base_patch16_224
 
 Here the *224* is left for timm's compatibility. Image size will always be the one specified in the configuration file under the *transform* section.
+
+## **MPS Support**
+The repository has *mps* support to train on M1 GPUs.
 
 ## **Warnings**
 :warning: As of today ResNet and ViT backbones work fine. Other models might fail.
