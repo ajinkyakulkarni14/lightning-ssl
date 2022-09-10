@@ -1,46 +1,59 @@
 import os
-import torch
+from src.loss import SSLLOSS
 import pytorch_lightning as pl
 from src.io.io import load_config
-from src.loss.byol import BYOLLoss
-from src.loss.dino import DINOLoss
-from src.model.byol.byol import BYOL
-from src.model.dino.dino import DINO
+from src.optimizer import Optimizer
+from src.scheduler import LRScheduler
 from src.datamodule import SSLDataModule
-from src.transform.transform import get_transform
-from src.optimizer.get_optimizer import get_optimizer
-from src.scheduler.get_scheduler import get_scheduler
+from src.transform import TrainTransform, ValTransform
 from src.utils.trainer import get_callbacks, get_logger
-from src.model.ssl_module import TeacherStudentSSLModule
+from src.model import SSLModel, TeacherStudentSSLModule
 
 def train(args):
     
-    pl.seed_everything(42)
+    pl.seed_everything(args.seed)
     
-    # TODO implement hydra
-    device = "gpu" if torch.cuda.is_available() else "cpu"
-    config_path = os.path.join("config", f"{args.model}_{device}.yml")
-    config = load_config(config_path)
-
-    train_transform, val_transform = get_transform(
-        model=args.model, 
+    config = load_config(args.config)
+    
+    # Train + Validation transform
+    train_transform = TrainTransform(
+        model=args.model,
+        **config["transform"]
+    ) 
+    val_transform = ValTransform(
+        model=args.model,
         **config["transform"]
     )
     
+    # Data Module
     datamodule = SSLDataModule(
         data_dir=args.data_dir,
         train_transform=train_transform,
         val_transform=val_transform,
-        **config["data_module"]
+        **config["datamodule"]
     )
     
     # setting up model, loss, optimizer, lr_scheduler
-    model = DINO(**config["model"]) if args.model == "dino" else BYOL(**config["model"])
-    criterion = DINOLoss(**config["loss"]) if args.model == "dino" else BYOLLoss(**config["loss"])
+    model = SSLModel(
+        model=args.model,
+        **config["model"]
+    )
+    
+    criterion = SSLLOSS(
+        model=args.model,
+        **config["loss"]
+    )
+    
     # adapt lr to rule (base_lr * batch_size / 256)
-    config["optimizer"]["lr"] *= config["data_module"]["batch_size"] / 256.
-    optimizer = get_optimizer(model=model, **config["optimizer"])
-    lr_scheduler = get_scheduler(optimizer=optimizer, name=config["lr_scheduler"]["name"], **config["lr_scheduler"]["params"])
+    config["optimizer"]["lr"] *= config["datamodule"]["batch_size"] / 256.
+    optimizer = Optimizer(
+        model=model, 
+        **config["optimizer"]
+    )
+    lr_scheduler = LRScheduler(
+        optimizer=optimizer, 
+        **config["lr_scheduler"]
+    )
     
     ssl_model = TeacherStudentSSLModule(
         model=model,
@@ -50,7 +63,6 @@ def train(args):
     )
     
     logger = get_logger(output_dir=args.checkpoint_dir)
-    
     callbacks = get_callbacks(output_dir=args.checkpoint_dir)
     
     trainer = pl.Trainer(
