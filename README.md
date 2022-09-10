@@ -12,7 +12,6 @@ Pytorch-Lightning implementation of two of the most important self-supervised le
     <img width="70%%" src="static/dino.gif" alt>
 </p>
 
-
 ## **Dataset**
 Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10/). The dataset was downloaded and then converted to *.png* images split into *train*, *test*, and *unlabelled* folders.
 
