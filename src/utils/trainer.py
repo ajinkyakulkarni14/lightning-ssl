@@ -17,7 +17,7 @@ def get_callbacks(output_dir: str) -> List[pytorch_lightning.Callback]:
     callbacks.append(
         ModelCheckpoint(
             dirpath=output_dir, 
-            filename="epoch={epoch}-step={step}-val_loss={loss/val:.3f}-val_acc={acc/val:.3f}",
+            filename="epoch={epoch}-step={step}-val_loss={loss/val:.3f}",
             monitor="loss/val",
             verbose=True,
             mode="min",
