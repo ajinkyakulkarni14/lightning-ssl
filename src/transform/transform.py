@@ -1,14 +1,46 @@
-from typing import Callable, Tuple
+from typing import Callable, Union
 from src.transform.base import SSLTransform, DINOTransform
 
-def get_transform(model: str, **kwargs) -> Tuple[Callable, Callable]:
-    """returns train and val transformations based on ssl model
+def train_transform(
+    model: str, 
+    **kwargs
+) -> Union[SSLTransform, DINOTransform]:
+    """retunrs train image transformations class
 
     Args:
-        model (str): SSL model
+        model (str): model name (DINO/BYOL)
 
     Returns:
-        Tuple[Callable, Callable]: train and val transformations
+        Union[SSLTransform, DINOTransform]: train transformation
     """
-    if model == "dino": return DINOTransform(**kwargs), DINOTransform(**kwargs)
-    if model == "byol": return SSLTransform(train=True, **kwargs), SSLTransform(train=False, **kwargs)
+    
+    if model == "dino":
+        return DINOTransform(**kwargs)
+    
+    if model == "byol":
+        return SSLTransform(train=True, **kwargs)    
+    
+    print(f"{model} not supported.")
+    quit()
+
+def val_transform(
+    model: str, 
+    **kwargs
+) -> Union[SSLTransform, DINOTransform]:
+    """retunrs val image transformations class
+
+    Args:
+        model (str): model name (DINO/BYOL)
+
+    Returns:
+        Union[SSLTransform, DINOTransform]: validation transformation
+    """
+    
+    if model == "dino":
+        return DINOTransform(**kwargs)
+    
+    if model == "byol":
+        return SSLTransform(train=False, **kwargs)    
+    
+    print(f"{model} not supported.")
+    quit()
