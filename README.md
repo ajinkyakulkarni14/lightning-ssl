@@ -43,7 +43,7 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
  
 
 ## **Warnings**
-:warning: As of today ResNet and ViT backbones work fine. Other models might fail.
+:warning: As of today most of timm's models works fine. Other models might fail.
 
 ## **TO-DOs**
 [ ] Add models performances on STL10
