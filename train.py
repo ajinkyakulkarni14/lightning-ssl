@@ -7,26 +7,32 @@ def parse_args() -> argparse.Namespace:
     
     parser.add_argument(
         "--model",
+        choices=["dino", "byol"],
         default="dino",
-        help="dino/byol",
-        choices=["dino", "byol"]
+        help="model name (dino/byol).",
     )
     
     parser.add_argument(
         "--config",
+        default="config/dino.yml",
         help="path to YAML configuration file.",
-        required=True
     )
     
     parser.add_argument(
         "--data-dir",
-        default="/opt/ml/input/data/dataset",
+        default="/Users/riccardomusmeci/Developer/data/stl10",
         help="dataset path"
     )
     
     parser.add_argument(
         "--checkpoint-dir",
-        default="/opt/ml/checkpoints"
+        default="/Users/riccardomusmeci/Developer/experiments/lightning-ssl",
+        help="where to save checkpoints during training"
+    )
+    
+    parser.add_argument(
+        "--seed",
+        default=42
     )
 
     return parser.parse_args()
