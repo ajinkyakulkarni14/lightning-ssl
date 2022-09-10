@@ -2,7 +2,7 @@
 ## **Self-Supervised Learning (BYOL+DINO) with PyTorch Lightning**
 Pytorch-Lightning implementation of two of the most important self-supervised learning techniques: 
 
-* **BYOL** ([`paper`](https://arxiv.org/pdf/2006.07733.pdf), [`repository`](https://github.com/deepmind/deepmind-research/tree/master/byol))
+* **BYOL** ([`arXiv`](https://arxiv.org/pdf/2006.07733.pdf), [`repository`](https://github.com/deepmind/deepmind-research/tree/master/byol))
 <p align="center">
     <img width="70%" src="static/byol_diagram.png" alt>
 </p>
