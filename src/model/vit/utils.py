@@ -2,7 +2,10 @@ import timm
 import torch.nn as nn
 from src.model.vit.vit import VisionTransformer
 
-def load_state_dict(model: VisionTransformer, model_name: str) -> VisionTransformer:
+def load_state_dict(
+    model: VisionTransformer, 
+    model_name: str
+) -> VisionTransformer:
     """loads state dict for custom VisionTransformer
 
     Args:
@@ -12,7 +15,7 @@ def load_state_dict(model: VisionTransformer, model_name: str) -> VisionTransfor
     Returns:
         VisionTransformer: custom ViT with loaded pretrained weights
     """
-    print(f"Loading pretrained weights from timm's {model_name}")
+    print(f"> Loading pretrained weights from timm's {model_name}")
     pretrained_model = timm.create_model(model_name, pretrained=True)    
     pretrained_state_dict = pretrained_model.state_dict()
     for layer_name in model.state_dict():
