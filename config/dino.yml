@@ -46,11 +46,11 @@ optimizer:
 
 ###### LR Scheduler ######
 lr_scheduler:
-  name: linear_cosine                       # lr_scheduler name
-  warmup_epochs: 10                         # linear warmup number of epochs
-  max_epochs: 20                            # cosine annealing number of epochs after linear warmup
-  warmup_start_lr: 0.0                      # initial lr at the linear warmup period (lr will reach optim lr in the linear stage either increasing or decreasing)
-  eta_min: 0.000001                         # minimum lr in the scheduler
+  name: linear_cosine                         # lr_scheduler name
+  warmup_epochs: 10                           # linear warmup number of epochs
+  max_epochs: 20                              # cosine annealing number of epochs after linear warmup
+  warmup_start_lr: 0.0                        # initial lr at the linear warmup period (lr will reach optim lr in the linear stage either increasing or decreasing)
+  eta_min: 0.000001                           # minimum lr in the scheduler
   last_epoch: -1
   # name: cosine
   # params:

@@ -37,9 +37,9 @@ loss:
 ###### LR Scheduler ######
 lr_scheduler:
   name: cosine                                # lr_scheduler name
-  T_0: 10                                   # number of epochs to reduce the lr
-  T_mult: 2                                 # lr reducing factor (e.g. 2 means lr/2 at each epoch)
-  eta_min: 0                                # min lrdecreasing)
+  T_0: 10                                     # number of epochs to reduce the lr
+  T_mult: 2                                   # lr reducing factor (e.g. 2 means lr/2 at each epoch)
+  eta_min: 0                                  # min lrdecreasing)
     
 ###### Augmentations ######
 transform: 
