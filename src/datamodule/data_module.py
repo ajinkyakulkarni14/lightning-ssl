@@ -1,9 +1,8 @@
 import pytorch_lightning as pl
+from src.dataset import SSLSTL10
 from torch.utils.data import DataLoader
 from src.dataset.utils import collate_fn
-from src.dataset.imagenette import ImagenetteDataset
 from typing import List, Dict, Union, Callable, Optional
-
 
 class SSLDataModule(pl.LightningDataModule):
     
@@ -37,20 +36,20 @@ class SSLDataModule(pl.LightningDataModule):
         
         if stage == "fit" or stage is None:
             
-            self.train_dataset = ImagenetteDataset(
+            self.train_dataset = SSLSTL10(
                 root=self.data_dir,
                 train=True,
                 transform=self.train_transform
             )
             
-            self.val_dataset = ImagenetteDataset(
+            self.val_dataset = SSLSTL10(
                 root=self.data_dir,
                 train=False,
                 transform=self.val_transform
             )
         
         if stage == "test" or stage is None:
-            self.test_dataset = ImagenetteDataset(
+            self.test_dataset = SSLSTL10(
                 root=self.data_dir,
                 train=False,
                 transform=self.val_transform
