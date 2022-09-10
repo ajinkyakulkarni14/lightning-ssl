@@ -18,7 +18,7 @@ datamodule:
 
 ###### DINO ######
 model:
-  backbone: custom_vit_base_patch16_224       # model backbone
+  backbone: custom_vit_tiny_patch16_224       # model backbone
   pretrained: false                           # load pretrained weights for backbone
   hidden_dim: 4096                            # MLP predictor hidden units
   proj_dim: 256                               # MLP output size

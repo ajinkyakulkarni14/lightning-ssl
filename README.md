@@ -36,7 +36,11 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 Here the *224* is left for timm's compatibility. Image size will always be the one specified in the configuration file under the *transform* section.
 
 ## **MPS Support**
-The repository has *mps* support to train on M1 GPUs.
+The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
+```
+PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
+```
+ 
 
 ## **Warnings**
 :warning: As of today ResNet and ViT backbones work fine. Other models might fail.
