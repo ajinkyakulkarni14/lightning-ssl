@@ -49,7 +49,19 @@ def custom_vit(
         )
     return vit
 
-def get_backbone(backbone: str, pretrained: bool = True) -> nn.Module:
+def create_backbone(
+    backbone: str, 
+    pretrained: bool = True
+) -> nn.Module:
+    """creates model's backbone
+
+    Args:
+        backbone (str): backbone name
+        pretrained (bool, optional): pretrained. Defaults to True.
+
+    Returns:
+        nn.Module: backbone model
+    """
     
     if backbone.startswith("custom_"):
         model_info=backbone.split("_")
@@ -67,7 +79,9 @@ def get_backbone(backbone: str, pretrained: bool = True) -> nn.Module:
             num_classes=0
         )
 
-def get_backbone_out_features(model_name: str) -> int:
+def get_out_features(
+    model_name: str
+) -> int:
     """returns the out features dim of a
 
     Args:

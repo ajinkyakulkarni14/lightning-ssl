@@ -2,7 +2,7 @@ import timm
 import torch
 import torch.nn as nn
 from src.model.layers.mlp import MLP
-from src.model.utils.backbone import get_backbone, get_backbone_out_features
+from src.model.utils.backbone import create_backbone, get_out_features
 
 class Encoder(nn.Module):
     
@@ -42,12 +42,11 @@ class Encoder(nn.Module):
         
         self.dino = dino
         
-        self.backbone = get_backbone(
+        self.backbone = create_backbone(
             backbone=backbone,
             pretrained=pretrained
         )
-                
-        backbone_out = get_backbone_out_features(backbone)
+        backbone_out = get_out_features(backbone)
         
         self.projector = MLP(
             in_features=backbone_out,
