@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from typing import List, Tuple
-from src.model.layers.encoder import Encoder
+from src.model.layers import Encoder
 
 class DINO(nn.Module):
     

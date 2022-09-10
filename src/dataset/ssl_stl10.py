@@ -39,7 +39,6 @@ class SSLSTL10(Dataset):
                     if not f.startswith("."):
                         self.img_paths.append(os.path.join(self.data_dir, c, f))
                         self.targets.append(c_i)
-                        
         self.transform = transform
         
     def __getitem__(self, index) -> Tuple:

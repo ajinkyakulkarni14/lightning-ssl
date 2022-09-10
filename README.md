@@ -1,2 +1,3 @@
 # lightning-ssl
-Self-Supervised methods implemented with PyTorch Lightning
+Pytorch-Lightning implementation of some Self-Supervised Learning famous techniques (e.g. BYOL, DINO)
+

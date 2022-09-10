@@ -2,8 +2,8 @@ from turtle import forward
 import torch
 import torch.nn as nn
 from typing import Tuple
-from src.model.layers.mlp import MLP
-from src.model.layers.encoder import Encoder
+from src.model.layers import MLP
+from src.model.layers import Encoder
 
 class BYOL(nn.Module):
     

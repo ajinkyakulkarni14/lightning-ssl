@@ -1,7 +1,7 @@
 import timm
 import torch
 import torch.nn as nn
-from src.model.layers.mlp import MLP
+from src.model.layers import MLP
 from src.model.utils.backbone import create_backbone, get_out_features
 
 class Encoder(nn.Module):
