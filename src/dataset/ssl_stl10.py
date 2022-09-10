@@ -25,7 +25,7 @@ class SSLSTL10(Dataset):
             print(f"{root} does not exists. Quitting.")
             quit()
         
-        self.data_dir = os.path.join(root, "unlabeled" if train else "test")
+        self.data_dir = os.path.join(root, "unlabelled" if train else "test")
         if train:
             self.img_paths = [os.path.join(self.data_dir, f) for f in os.listdir(self.data_dir) if not f.startswith(".")]
             self.targets = None
