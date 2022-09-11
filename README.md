@@ -48,6 +48,8 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
 ## **TO-DOs**
 [ ] Add models performances on STL10
 
+[ ] Add download link in notebooks for weights+yml
+
 [ ] Add notebook to train a classifier on DINO/BYOL weigths
 
 
