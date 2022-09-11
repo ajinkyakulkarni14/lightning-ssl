@@ -50,9 +50,6 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
 
 [ ] Add notebook to train a classifier on DINO/BYOL weigths
 
-[ ] Add notebook for feature visualization 
-
-[ ] Add notebook to show GradCAM
 
 
 
