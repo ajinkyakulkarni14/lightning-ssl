@@ -36,6 +36,7 @@ def train(args):
     # setting up model, loss, optimizer, lr_scheduler
     model = SSLModel(
         model=args.model,
+        img_size=config["transform"]["img_size"],
         **config["model"]
     )
     
