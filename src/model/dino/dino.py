@@ -8,6 +8,7 @@ class DINO(nn.Module):
     def __init__(
         self,
         backbone: str,
+        img_size: int,
         pretrained: bool = True,
         hidden_dim: int = 4096,
         proj_dim: int = 256,
@@ -24,6 +25,7 @@ class DINO(nn.Module):
 
         Args:
             backbone (str): backbone architecture
+            img_size (int): input image size
             pretrained (bool, optional): load pretrained weights. Defaults to True.
             hidden_dim (int, optional): encoder hidden dim. Defaults to 4096.
             proj_dim (int, optional): encoder projector output dim. Defaults to 256.
@@ -40,6 +42,7 @@ class DINO(nn.Module):
         
         self.student = Encoder(
             backbone=backbone,
+            img_size=img_size,
             pretrained=pretrained,
             hidden_dim=hidden_dim,
             proj_dim=proj_dim,
@@ -55,6 +58,7 @@ class DINO(nn.Module):
         
         self.teacher = Encoder(
             backbone=backbone,
+            img_size=img_size,
             pretrained=pretrained,
             hidden_dim=hidden_dim,
             proj_dim=proj_dim,

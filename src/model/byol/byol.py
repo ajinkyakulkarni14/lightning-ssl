@@ -10,6 +10,7 @@ class BYOL(nn.Module):
     def __init__(
         self,
         backbone: str,
+        img_size: int,
         pretrained: bool = True,
         hidden_dim: int = 4096,
         proj_dim: int = 256,
@@ -24,6 +25,7 @@ class BYOL(nn.Module):
 
         Args:
             backbone (str): backbone architecture
+            img_size (int): input image size.
             pretrained (bool, optional): load pretrained weights. Defaults to True.
             hidden_dim (int, optional): encoder hidden dim. Defaults to 4096.
             proj_dim (int, optional): encoder porjector output dim. Defaults to 256.
@@ -39,6 +41,7 @@ class BYOL(nn.Module):
         # g_theta 
         self.student = Encoder(
             backbone=backbone,
+            img_size=img_size,
             pretrained=pretrained,
             hidden_dim=hidden_dim,
             proj_dim=proj_dim,
@@ -59,6 +62,7 @@ class BYOL(nn.Module):
         # f_eps -> second branch (target) -> (no gradient updates for this branch, only EMA)
         self.teacher = Encoder(
             backbone=backbone,
+            img_size=img_size,
             pretrained=pretrained,
             hidden_dim=hidden_dim,
             proj_dim=proj_dim

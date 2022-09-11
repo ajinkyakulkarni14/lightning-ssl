@@ -9,6 +9,7 @@ class Encoder(nn.Module):
     def __init__(
         self,
         backbone: str,
+        img_size: int,
         pretrained: bool = True,
         hidden_dim: int = 4096,
         proj_dim: int = 256,
@@ -25,6 +26,7 @@ class Encoder(nn.Module):
 
         Args:
             backbone (str): backbone architecture
+            img_size (int): input image size
             pretrained (bool, optional): load pretrained weights. Defaults to True.
             hidden_dim (int, optional): MLP hidden dim. Defaults to 4096.
             proj_dim (int, optional): MLP projector output dim. Defaults to 256.
@@ -44,7 +46,8 @@ class Encoder(nn.Module):
         
         self.backbone = create_backbone(
             backbone=backbone,
-            pretrained=pretrained
+            pretrained=pretrained,
+            img_size=img_size
         )
         backbone_out = get_out_features(backbone)
         
