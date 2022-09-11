@@ -29,11 +29,11 @@ python train.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PAT
 
 ## **Custom ViT**
 Custom implementation of ViT is provided to be flexible on the image size. These the models supported:
-* custom_vit_tiny_patch16_224
-* custom_vit_small_patch16_224
-* custom_vit_base_patch16_224
+* custom_vit_tiny_patch16
+* custom_vit_small_patch16
+* custom_vit_base_patch16
 
-Here the *224* is left for timm's compatibility. Image size will always be the one specified in the configuration file under the *transform* section.
+Image size will always be the one specified in the configuration file under the *transform* section. For all the other timm's models, please refer to its documentation to set the proper image input size.
 
 ## **MPS Support**
 The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
