@@ -8,6 +8,19 @@ from src.io.io import read_rgb
 
 class SSLSTL10(Dataset):
     
+    CLASSES = {
+        1: "airplane",
+        2: "bird",
+        3: "car",
+        4: "cat",
+        5: "deer",
+        6: "dog",
+        7: "horse",
+        8: "monkey",
+        9: "ship",
+        10: "truck"
+    }
+    
     def __init__(
         self,
         root: str, 
@@ -33,12 +46,14 @@ class SSLSTL10(Dataset):
             classes = [c for c in os.listdir(self.data_dir) if not c.startswith(".")]
             self.targets = []
             self.img_paths = []
+            self.labels = []
             for c_i, c in enumerate(classes):
                 c_dir = os.path.join(self.data_dir, c)
                 for f in os.listdir(c_dir):
                     if not f.startswith("."):
                         self.img_paths.append(os.path.join(self.data_dir, c, f))
                         self.targets.append(c_i)
+                        self.labels.append(self.CLASSES[int(c)])
         self.transform = transform
         
     def __getitem__(self, index) -> Tuple:
