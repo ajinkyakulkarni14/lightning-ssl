@@ -1,5 +1,6 @@
 import timm
 import torch.nn as nn
+from typing import Dict
 from src.model.vit import create_vit
 
 
@@ -59,3 +60,28 @@ def get_out_features(
         )
         layers = list(model.children())
         return layers[-1].in_features
+
+def load_state_dict_ssl(
+    model: nn.Module, 
+    ssl_state_dict: Dict, 
+    initials: str = "model.student.backbone."
+) -> nn.Module:
+    """loads weights from self-supervised model into model based on initials params (e.g. "model.student.backbone." are the layers to consider for TeacherStudentSSL models)
+
+    Args:
+        model (nn.Module): model
+        ssl_state_dict (Dict): self supervised model state dict
+        initials (str, optional): layers' initial to consider for loading weights to model. Defaults to "model.student.backbone.".
+
+    Returns:
+        nn.Module: model with loaded weights
+    """
+    count = 0
+    for k, v in ssl_state_dict.items():
+        if k.startswith(initials):
+            _k = k.replace(initials, "")
+            if _k in model.state_dict().keys():
+                model.state_dict()[_k].copy_(v)
+                count += 1
+    print(f"> Loaded weights into model for {count}/{len(list(model.state_dict().keys()))} layers.")
+    return model
