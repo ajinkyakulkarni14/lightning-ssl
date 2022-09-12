@@ -66,7 +66,6 @@ def cancel_gradients_last_layer(epoch, model, frozen_epochs):
         if "last_layer" in n:
             p.grad = None
 
-
 def trunc_normal_(tensor, mean=0., std=1., a=-2., b=2.):
     # type: (torch.Tensor, float, float, float, float) -> torch.Tensor
     return fills_val_trunc_normal_(tensor, mean, std, a, b)
