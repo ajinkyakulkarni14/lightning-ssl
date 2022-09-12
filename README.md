@@ -35,11 +35,19 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 
 Image size will always be the one specified in the configuration file under the *transform* section. For all the other timm's models, please refer to its documentation to set the proper image input size.
 
+## **Notebooks**
+The folder *notebooks* contains the following notebooks:
+* *visualize_attentions.ipynb* -> you can play with your custom ViT trained in SSL fashion to visualize the attentions for each image
+* *show_gradcam.ipynb* ->  after training a classifier on top of SSL-based weights, look at the GradCAM plots to see where the model focuses to predict a label
+* *show_features_distribution* -> either before or after look at the features distribution per class extracted from the model trained with SSL fashion with a t-SNE plot
+
 ## **MPS Support**
 The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
 ```
 PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
 ```
+
+
  
 
 ## **Warnings**
