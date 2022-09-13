@@ -66,10 +66,14 @@ def train(args):
     logger = get_logger(output_dir=args.checkpoint_dir)
     callbacks = get_callbacks(output_dir=args.checkpoint_dir)
     
+    if args.resume_from:
+        print(f"Resuming training from {args.resume_from}")
+    
     trainer = pl.Trainer(
         logger=logger,
         callbacks=callbacks,
         default_root_dir=args.checkpoint_dir,
+        resume_from_checkpoint=args.resume_from,
         **config["trainer"]
     )
     
