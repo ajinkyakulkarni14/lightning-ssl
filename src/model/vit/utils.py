@@ -9,14 +9,17 @@ def create_vit(
     pretrained: bool,
     patch_size: int, 
     img_size: int,
+    num_classes: int = 0
 ) -> nn.Module:
     """returns a custom ViT backbone
 
     Args:
         vit_base (str): vit/deit
         model_size (str): model size (tiny, small, base)
+        pretrained (bool): pretrained weights.
         patch_size (int): patch size
         img_size (int): image size
+        num_classes (int, optional): number of output classes. Defaults to 0.
         
     Returns:
         nn.Module: Custom ViT
@@ -38,6 +41,7 @@ def create_vit(
     vit = VisionTransformer(
         img_size=[img_size],
         patch_size=patch_size,
+        num_classes=num_classes,
         embed_dim=embed_dim,
         num_heads=num_heads,
         norm_layer=partial(nn.LayerNorm, eps=1e-6)

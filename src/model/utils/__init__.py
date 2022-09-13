@@ -1,1 +1,1 @@
-from .backbone import create_backbone, load_state_dict_ssl
+from .backbone import create_model, load_state_dict_ssl

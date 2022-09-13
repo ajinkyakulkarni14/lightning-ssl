@@ -2,7 +2,7 @@ import timm
 import torch
 import torch.nn as nn
 from src.model.layers import MLP
-from src.model.utils.backbone import create_backbone, get_out_features
+from src.model.utils.backbone import create_model, get_out_features
 
 class Encoder(nn.Module):
     
@@ -44,7 +44,7 @@ class Encoder(nn.Module):
         
         self.dino = dino
         
-        self.backbone = create_backbone(
+        self.backbone = create_model(
             backbone=backbone,
             pretrained=pretrained,
             img_size=img_size

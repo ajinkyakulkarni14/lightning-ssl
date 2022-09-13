@@ -4,10 +4,11 @@ from typing import Dict
 from src.model.vit import create_vit
 
 
-def create_backbone(
+def create_model(
     backbone: str, 
     pretrained: bool = True,
-    img_size: int = None
+    img_size: int = None,
+    num_classes: int = 0
 ) -> nn.Module:
     """creates model's backbone
 
@@ -15,6 +16,7 @@ def create_backbone(
         backbone (str): backbone name
         pretrained (bool, optional): pretrained. Defaults to True.
         img_size (int, optional): input image size. Defaults to 224.
+        num_classes (int, optional): number of output classes. Defaults to 0.
 
     Returns:
         nn.Module: backbone model
@@ -29,12 +31,13 @@ def create_backbone(
             pretrained=pretrained,
             patch_size=int(model_info[3].replace("patch", "")),
             img_size=img_size,
+            num_classes=num_classes
         )
     else:
         return timm.create_model(
             model_name=backbone,
             pretrained=pretrained,
-            num_classes=0
+            num_classes=num_classes
         )
 
 def get_out_features(
