@@ -1,10 +1,7 @@
-
 import os
-from tkinter.messagebox import NO
+from src.io.io import read_rgb
 from typing import Callable, Tuple
 from torch.utils.data import Dataset
-
-from src.io.io import read_rgb
 
 class SSLSTL10(Dataset):
     
