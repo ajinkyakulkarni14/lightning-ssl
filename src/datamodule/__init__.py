@@ -1,1 +1,2 @@
-from .data_module import SSLDataModule
+from .ssl import SSLDataModule
+from .classifier import ClassifierDataModule

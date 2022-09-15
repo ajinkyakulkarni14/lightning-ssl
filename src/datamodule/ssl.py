@@ -87,3 +87,4 @@ class SSLDataModule(pl.LightningDataModule):
             pin_memory=self.pin_memory,
             collate_fn=collate_fn
         )
+        
