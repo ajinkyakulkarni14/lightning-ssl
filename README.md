@@ -17,14 +17,14 @@ Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10
 
 Train and test folders must be divided into folders, every one representing a class.
 
-## **Train**
+## **Train SSL**
 The repository supports [timm](https://github.com/rwightman/pytorch-image-models) models as backbones for both BYOL and DINO. 
 
 Both BYOL and DINO come with a YAML configuration file in *config/* folder. Play with it to change some training parameters such us backbones, augmentations, schedulers, etc.
 
 To train the model, please run:
 ```
-python train.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python train_ssl.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
 
 ## **Custom ViT**

@@ -9,7 +9,7 @@ from src.transform import TrainTransform, ValTransform
 from src.utils.trainer import get_callbacks, get_logger
 from src.model import SSLModel, TeacherStudentSSLModule
 
-def train(args):
+def train_ssl(args):
     
     pl.seed_everything(args.seed)
     
