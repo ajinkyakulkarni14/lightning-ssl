@@ -1,7 +1,6 @@
 from src.dataset import STL10
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
-from src.dataset.utils import collate_fn
 from typing import List, Dict, Union, Callable, Optional
 
 class ClassifierDataModule(pl.LightningDataModule):
@@ -62,8 +61,7 @@ class ClassifierDataModule(pl.LightningDataModule):
             shuffle=self.shuffle,
             num_workers=self.num_workers,
             drop_last=self.drop_last,
-            pin_memory=self.pin_memory,
-            collate_fn=collate_fn
+            pin_memory=self.pin_memory
         )
         
     def val_dataloader(self) -> Union[DataLoader, List[DataLoader], Dict[str, DataLoader]]:
@@ -73,8 +71,7 @@ class ClassifierDataModule(pl.LightningDataModule):
             shuffle=False,
             num_workers=self.num_workers,
             drop_last=self.drop_last,
-            pin_memory=self.pin_memory,
-            collate_fn=collate_fn
+            pin_memory=self.pin_memory
         )
     
     def test_dataloader(self) -> Union[DataLoader, List[DataLoader], Dict[str, DataLoader]]:
@@ -84,6 +81,5 @@ class ClassifierDataModule(pl.LightningDataModule):
             shuffle=self.shuffle,
             num_workers=self.num_workers,
             drop_last=self.drop_last,
-            pin_memory=self.pin_memory,
-            collate_fn=collate_fn
+            pin_memory=self.pin_memory
         )
