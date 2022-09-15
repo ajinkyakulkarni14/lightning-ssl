@@ -1,5 +1,4 @@
 import math
-import timm
 import torch
 
 def fills_val_trunc_normal_(
