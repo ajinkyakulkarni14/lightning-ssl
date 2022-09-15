@@ -17,7 +17,7 @@ Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10
 
 Train and test folders must be divided into folders, every one representing a class.
 
-## **Train SSL**
+## **Train Self-Supervised Backbone**
 The repository supports [timm](https://github.com/rwightman/pytorch-image-models) models as backbones for both BYOL and DINO. 
 
 Both BYOL and DINO come with a YAML configuration file in *config/* folder. Play with it to change some training parameters such us backbones, augmentations, schedulers, etc.
@@ -34,6 +34,13 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 * custom_vit_base_patch16
 
 Image size will always be the one specified in the configuration file under the *transform* section. For all the other timm's models, please refer to its documentation to set the proper image input size.
+
+## Linear Evaluation
+Train a linear classifier on top of frozen features from self-sup backbone with *linear_eval.py* script.
+
+```
+python train_ssl.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/clf/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+```
 
 ## **Notebooks**
 The folder *notebooks* contains the following notebooks:
