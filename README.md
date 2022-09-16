@@ -4,12 +4,12 @@ Pytorch-Lightning implementation of two of the most important self-supervised le
 
 * **BYOL** ([`arXiv`](https://arxiv.org/pdf/2006.07733.pdf), [`repository`](https://github.com/deepmind/deepmind-research/tree/master/byol))
 <p align="center">
-    <img width="70%" src="static/byol_diagram.png" alt>
+    <img width="70%" src=".static/byol_diagram.png" alt>
 </p>
 
 * **DINO** ([`arXiv`](https://arxiv.org/pdf/2104.14294.pdf), [`repository`](https://github.com/facebookresearch/dino))
 <p align="center">
-    <img width="70%%" src="static/dino.gif" alt>
+    <img width="70%%" src=".static/dino.gif" alt>
 </p>
 
 ## **Dataset**
@@ -17,14 +17,14 @@ Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10
 
 Train and test folders must be divided into folders, every one representing a class.
 
-## **Train**
+## **Train Self-Supervised Backbone**
 The repository supports [timm](https://github.com/rwightman/pytorch-image-models) models as backbones for both BYOL and DINO. 
 
 Both BYOL and DINO come with a YAML configuration file in *config/* folder. Play with it to change some training parameters such us backbones, augmentations, schedulers, etc.
 
 To train the model, please run:
 ```
-python train.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python train_ssl.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
 
 ## **Custom ViT**
@@ -35,6 +35,13 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 
 Image size will always be the one specified in the configuration file under the *transform* section. For all the other timm's models, please refer to its documentation to set the proper image input size.
 
+## Linear Evaluation
+Train a linear classifier on top of frozen features from self-sup backbone with *linear_eval.py* script.
+
+```
+python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/clf/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+```
+
 ## **Notebooks**
 The folder *notebooks* contains the following notebooks:
 * *visualize_attentions.ipynb* -> you can play with your custom ViT trained in SSL fashion to visualize the attentions for each image
@@ -44,11 +51,8 @@ The folder *notebooks* contains the following notebooks:
 ## **MPS Support**
 The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
 ```
-PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
+PYTORCH_ENABLE_MPS_FALLBACK=1 python [SCRIPT].py
 ```
-
-
- 
 
 ## **Warnings**
 :warning: As of today most of timm's models works fine. Other models might fail.
@@ -57,8 +61,6 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
 [ ] Add models performances on STL10
 
 [ ] Add download link in notebooks for weights+yml
-
-[ ] Add notebook to train a classifier on DINO/BYOL weigths
 
 
 

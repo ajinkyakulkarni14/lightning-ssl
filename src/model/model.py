@@ -1,3 +1,4 @@
+import torch.nn as nn
 from typing import Union
 from src.model.byol import BYOL
 from src.model.dino import DINO
@@ -14,3 +15,4 @@ def ssl_model(
     
     print(f"{model} not supported.")
     quit()
+     
