@@ -17,6 +17,17 @@ Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10
 
 Train and test folders must be divided into folders, every one representing a class.
 
+## **Attention Maps and Weights**
+<p align="center">
+    <img width="70%%" src=".static/airplane.png" alt>
+</p>
+<p align="center">
+    <img width="70%%" src=".static/cat.png" alt>
+</p>
+<p align="center">
+    <img width="70%%" src=".static/truck.png" alt>
+</p>
+
 <table>
   <tr>
     <th>arch</th>
@@ -37,6 +48,7 @@ Train and test folders must be divided into folders, every one representing a cl
   </tr>
 </table>
 
+
 ## **Train Self-Supervised Backbone**
 The repository supports [timm](https://github.com/rwightman/pytorch-image-models) models as backbones for both BYOL and DINO. 
 
@@ -55,11 +67,11 @@ Custom implementation of ViT is provided to be flexible on the image size. These
 
 Image size will always be the one specified in the configuration file under the *transform* section. For all the other timm's models, please refer to its documentation to set the proper image input size.
 
-## Linear Evaluation
+## **Linear Evaluation**
 Train a linear classifier on top of frozen features from self-sup backbone with *linear_eval.py* script.
 
 ```
-python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/clf/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/linearconfig.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
 
 ## **Notebooks**
