@@ -14,7 +14,7 @@ def parse_args() -> argparse.Namespace:
     
     parser.add_argument(
         "--clf-config",
-        default="config/clf/config.yml",
+        default="config/linearconfig.yml",
         help="path to YAML configuration file for the linear classifier.",
     )
     
