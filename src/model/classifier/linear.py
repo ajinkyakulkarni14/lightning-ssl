@@ -10,7 +10,8 @@ class LinearClassifier(nn.Module):
         in_feat: int, 
         num_classes: int = 10,
         n_last_blocks: int = 4,
-        avgpool: bool = True
+        avgpool: bool = True,
+        freeze: bool = True
     ):
         """Linear Classifier built on top of frozen features
 
@@ -21,10 +22,12 @@ class LinearClassifier(nn.Module):
             num_classes (int, optional): number of output classes. Defaults to 10.
             n_last_blocks (int, optional): (only for ViT) number of last attenion blocks to consider. Defaults to 4.
             avgpool (bool, optional): (only for ViT) if run avgpool in ViT output. Defaults to True.
+            freeze (bool, optional): whether to freeze backbone weights. Default to True.
         """
         super(LinearClassifier, self).__init__()
-        for param in backbone.parameters():
-            param.requires_grad = False
+        if freeze:
+            for param in backbone.parameters():
+                param.requires_grad = False
         self.backbone = backbone
         self.is_vit = is_vit
         self.num_classes = num_classes

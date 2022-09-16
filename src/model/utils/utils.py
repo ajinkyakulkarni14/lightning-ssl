@@ -7,7 +7,7 @@ from src.model.classifier import LinearClassifier
 
 def create_linear_model(
     backbone: str,
-    ckpt: str,
+    ssl_ckpt: str,
     img_size: int,
     num_classes: int,
     n_last_blocks: int = 4,
@@ -18,7 +18,7 @@ def create_linear_model(
 
     Args:
         backbone (str): ssl backbone name
-        ckpt (str): path to checkpoint file
+        ssl_ckpt (str): path to checkpoint file of self-supervised model with teacher-student structure
         img_size (int): input image size
         num_classes (int): number of classes
         n_last_blocks (int, optional): number of last attention blocks to consider (only for ViT). Defaults to 4.
@@ -29,12 +29,17 @@ def create_linear_model(
         Tuple[nn.Module, nn.Module]: ssl_backbone, clf_head
     """
     
-    ssl_backbone = create_model(backbone=backbone, pretrained=False, img_size=img_size)
-    ssl_state_dict = torch.load(ckpt, map_location=torch.device('cpu'))["state_dict"]
-    ssl_backbone = load_state_dict_ssl(
-        model=ssl_backbone,
-        ssl_state_dict=ssl_state_dict
+    ssl_backbone = create_model(
+        backbone=backbone, 
+        pretrained=False, 
+        img_size=img_size
     )
+    if ssl_ckpt is not None:
+        ssl_state_dict = torch.load(ssl_ckpt, map_location=torch.device('cpu'))["state_dict"]
+        ssl_backbone = load_state_dict_ssl(
+            model=ssl_backbone,
+            ssl_state_dict=ssl_state_dict
+        )
     embed_dim = get_out_features(model_name=backbone)
     if "vit" in backbone:
         embed_dim = embed_dim * (n_last_blocks + int(avgpool))
@@ -46,6 +51,7 @@ def create_linear_model(
         num_classes=num_classes,
         n_last_blocks=n_last_blocks,
         avgpool=avgpool,
+        freeze=freeze
     )
     
     return model
