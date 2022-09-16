@@ -37,7 +37,7 @@ def linear_eval(args):
     # Setting up model, loss, optimizer, lr_scheduler
     linear_model = create_linear_model(
         backbone=ssl_config["model"]["backbone"],
-        ckpt=args.ssl_ckpt,
+        ssl_ckpt=args.ssl_ckpt,
         img_size=ssl_config["transform"]["img_size"],
         **clf_config["model"]
     )
