@@ -17,6 +17,26 @@ Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10
 
 Train and test folders must be divided into folders, every one representing a class.
 
+<table>
+  <tr>
+    <th>arch</th>
+    <th>img-size </th>
+    <th>params</th>
+    <th>linear</th>
+    <th colspan="4">download</th>
+  </tr>
+  <tr>
+    <td>ViT-tiny/16</td>
+    <td>96</td>
+    <td>5.5M</td>
+    <td>73.3%</td>
+    <td><a href="https://drive.google.com/file/d/1GGyE9ZAnjS0plGkIvxGKSUo9nNu5vlbB/view?usp=sharing">full DINO</a></td>
+    <td><a href="https://drive.google.com/file/d/1XdP825Yqx-SJRRKU-Es0RGA6F45eXd3g/view?usp=sharing">linear model</a></td>
+    <td><a href="https://drive.google.com/file/d/1cM3SgZJccEZmI5-ZNAh5UNsdsYCtRgBk/view?usp=sharing">DINO config</a></td>
+    <td><a href="https://drive.google.com/file/d/1DIJacKW-IW_I7KqaK8gYCoKJcgoGmCIs/view?usp=sharing">linear config</a></td>
+  </tr>
+</table>
+
 ## **Train Self-Supervised Backbone**
 The repository supports [timm](https://github.com/rwightman/pytorch-image-models) models as backbones for both BYOL and DINO. 
 
@@ -58,11 +78,9 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python [SCRIPT].py
 :warning: As of today most of timm's models works fine. Other models might fail.
 
 ## **TO-DOs**
-[ ] Add models performances on STL10
+[ ] Train new models (ViT-small / ViT-Base / ResNet18-50) on STL10
 
-[ ] Add download link in notebooks for weights+yml
-
-
+[ ] add warmup teacher temp
 
 
 
