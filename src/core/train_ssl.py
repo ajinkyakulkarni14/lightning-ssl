@@ -64,7 +64,10 @@ def train_ssl(args):
     )
     
     logger = get_logger(output_dir=args.checkpoint_dir)
-    callbacks = get_callbacks(output_dir=args.checkpoint_dir)
+    callbacks = get_callbacks(
+        output_dir=args.checkpoint_dir,
+        **config["callbacks"]
+    )
     
     if args.resume_from:
         print(f"Resuming training from {args.resume_from}")

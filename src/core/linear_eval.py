@@ -62,7 +62,10 @@ def linear_eval(args):
     )
     
     logger = get_logger(output_dir=args.checkpoint_dir)
-    callbacks = get_callbacks(output_dir=args.checkpoint_dir)
+    callbacks = get_callbacks(
+        output_dir=args.checkpoint_dir,
+        **clf_config["callbacks"]
+    )
     
     if args.resume_from:
         print(f"Resuming training from {args.resume_from}")

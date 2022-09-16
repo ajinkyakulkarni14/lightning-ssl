@@ -56,3 +56,11 @@ transform:
   kernel: [3, 3]                              # gaussian blur kernel size
   sigma: [.1, 2]                              # gaussian blur params
   gaussian_blur_p: 0.1                        # gaussian blur transformation probability
+
+##### Callbacks #####
+callbacks:
+  filename: epoch={epoch}-step={step}-val_loss={loss/val:.3f}
+  monitor: loss/val
+  mode: min
+  save_top_k: 20
+  patience: 20

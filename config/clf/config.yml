@@ -22,3 +22,11 @@ model:
   n_last_blocks: 4                            # only for ViTs: number of last attention blocks to consider
   avgpool: false                              # only for ViTs: if avgpool output from attentions
   freeze: true                                # if True, backbone weights are frozen.
+
+##### Callbacks #####
+callbacks:
+  filename: epoch={epoch}-step={step}-val_loss={loss/val:.3f}-val_acc={acc/val:.3f}
+  monitor: acc/val
+  mode: max
+  save_top_k: 10
+  patience: 20

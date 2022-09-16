@@ -79,3 +79,11 @@ transform:
   sigma: [.1, 2]                              # gaussian blur params
   solarization_p: 0.2
   solarize_t: 170
+
+##### Callbacks #####
+callbacks:
+  filename: epoch={epoch}-step={step}-val_loss={loss/val:.3f}
+  monitor: loss/val
+  mode: min
+  save_top_k: 20
+  patience: 20
