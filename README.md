@@ -51,11 +51,8 @@ The folder *notebooks* contains the following notebooks:
 ## **MPS Support**
 The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
 ```
-PYTORCH_ENABLE_MPS_FALLBACK=1 python train.py
+PYTORCH_ENABLE_MPS_FALLBACK=1 python [SCRIPT].py
 ```
-
-
- 
 
 ## **Warnings**
 :warning: As of today most of timm's models works fine. Other models might fail.
