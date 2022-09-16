@@ -1,4 +1,3 @@
-import os
 from src.loss import SSLLOSS
 import pytorch_lightning as pl
 from src.io.io import load_config

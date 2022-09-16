@@ -75,7 +75,7 @@ def linear_eval(args):
         callbacks=callbacks,
         default_root_dir=args.checkpoint_dir,
         resume_from_checkpoint=args.resume_from,
-        **clf_config["trainer"]   
+        **clf_config["trainer"]
     )
     
     trainer.fit(model=model, datamodule=datamodule)

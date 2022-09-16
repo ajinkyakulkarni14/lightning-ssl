@@ -4,12 +4,12 @@ Pytorch-Lightning implementation of two of the most important self-supervised le
 
 * **BYOL** ([`arXiv`](https://arxiv.org/pdf/2006.07733.pdf), [`repository`](https://github.com/deepmind/deepmind-research/tree/master/byol))
 <p align="center">
-    <img width="70%" src="static/byol_diagram.png" alt>
+    <img width="70%" src=".static/byol_diagram.png" alt>
 </p>
 
 * **DINO** ([`arXiv`](https://arxiv.org/pdf/2104.14294.pdf), [`repository`](https://github.com/facebookresearch/dino))
 <p align="center">
-    <img width="70%%" src="static/dino.gif" alt>
+    <img width="70%%" src=".static/dino.gif" alt>
 </p>
 
 ## **Dataset**
