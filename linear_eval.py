@@ -14,7 +14,7 @@ def parse_args() -> argparse.Namespace:
     
     parser.add_argument(
         "--clf-config",
-        default="config/linearconfig.yml",
+        default="config/linear/config.yml",
         help="path to YAML configuration file for the linear classifier.",
     )
     
@@ -33,7 +33,7 @@ def parse_args() -> argparse.Namespace:
     
     parser.add_argument(
         "--checkpoint-dir",
-        default="/Users/riccardomusmeci/Developer/experiments/lightning-ssl/dino-vit-tiny-sagemaker-stl10-96/classifier/checkpoints",
+        default="/Users/riccardomusmeci/Developer/experiments/lightning-ssl/dino-vit-tiny-sagemaker-stl10-96/linear/checkpoints",
         help="where to save checkpoints during training"
     )
     

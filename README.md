@@ -54,10 +54,11 @@ The repository supports [timm](https://github.com/rwightman/pytorch-image-models
 
 Both BYOL and DINO come with a YAML configuration file in *config/* folder. Play with it to change some training parameters such us backbones, augmentations, schedulers, etc.
 
-To train the model, please run:
+To train the model with DINO, please run:
 ```
-python train_ssl.py --config config/YOUR_CONFIG.yml --model dino/byol --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python train_ssl.py --config config/ssl/dino.yml --model dino --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
+
 
 ## **Custom ViT**
 Custom implementation of ViT is provided to be flexible on the image size. These the models supported:
@@ -71,17 +72,15 @@ Image size will always be the one specified in the configuration file under the 
 Train a linear classifier on top of frozen features from self-sup backbone with *linear_eval.py* script.
 
 ```
-python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/linearconfig.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/linear/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
 
 ## **Notebooks**
 The folder *notebooks* contains the following notebooks:
 * *visualize_attentions.ipynb* -> you can play with your custom ViT trained in SSL fashion to visualize the attentions for each image
-* *show_gradcam.ipynb* ->  after training a classifier on top of SSL-based weights, look at the GradCAM plots to see where the model focuses to predict a label
-* *show_features_distribution* -> either before or after look at the features distribution per class extracted from the model trained with SSL fashion with a t-SNE plot
 
 ## **MPS Support**
-The repository has *mps* support to train on M1 GPUs. Remind to launch the training script as follows:
+The repository has *mps* support to train on M1 GPUs. Remind to run the training script as follows:
 ```
 PYTORCH_ENABLE_MPS_FALLBACK=1 python [SCRIPT].py
 ```
