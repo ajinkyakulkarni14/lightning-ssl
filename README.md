@@ -15,9 +15,11 @@ Pytorch-Lightning implementation of two of the most important self-supervised le
 ## **Dataset**
 Models are trained on the [STL10 dataset](https://ai.stanford.edu/~acoates/stl10/). The dataset was downloaded and then converted to *.png* images split into *train*, *test*, and *unlabelled* folders.
 
-Train and test folders must be divided into folders, every one representing a class.
+Train and test images must be divided into folders, every one representing a class.
 
 ## **Attention Maps and Weights**
+Here some examples of attentions maps of ViT-tiny/16 (img size 96) trained with DINO for 300 epochs on STL10.
+
 <p align="center">
     <img width="70%%" src=".static/airplane.png" alt>
 </p>
