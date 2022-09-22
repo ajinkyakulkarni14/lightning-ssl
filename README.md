@@ -74,7 +74,7 @@ Image size will always be the one specified in the configuration file under the 
 Train a linear classifier on top of frozen features from self-sup backbone with *linear_eval.py* script.
 
 ```
-python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --clf-config config/linear/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
+python linear_eval.py --ssl-config PATH/TO/SSL/BACKBONE/CONFIG.yml --linear-config config/linear/config.yml --ssl-ckpt  PATH/TO/CKPT/SSL/BACKBONE --data-dir PATH/TO/STL10 --checkpoints-dir PATH/TO/DIR/TO/SAVE/PTH
 ```
 
 ## **Notebooks**

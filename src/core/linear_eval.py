@@ -14,7 +14,7 @@ def linear_eval(args):
     pl.seed_everything(args.seed)
 
     ssl_config = load_config(args.ssl_config)
-    clf_config = load_config(args.clf_config)
+    linear_config = load_config(args.linear_config)
     
     # Train + Validation transform
     train_transform = ClassifierTransform(
@@ -31,7 +31,7 @@ def linear_eval(args):
         data_dir=args.data_dir,
         train_transform=train_transform,
         val_transform=val_transform,
-        **clf_config["datamodule"]
+        **linear_config["datamodule"]
     )
     
     # Setting up model, loss, optimizer, lr_scheduler
@@ -39,7 +39,7 @@ def linear_eval(args):
         backbone=ssl_config["model"]["backbone"],
         ssl_ckpt=args.ssl_ckpt,
         img_size=ssl_config["transform"]["img_size"],
-        **clf_config["model"]
+        **linear_config["model"]
     )
     
     criterion = nn.CrossEntropyLoss()
@@ -57,14 +57,14 @@ def linear_eval(args):
         criterion=criterion,
         optimizer=optimizer,
         lr_scheduler=lr_scheduler,
-        n_last_blocks=clf_config["model"]["n_last_blocks"],
-        avgpool=clf_config["model"]["avgpool"]
+        n_last_blocks=linear_config["model"]["n_last_blocks"],
+        avgpool=linear_config["model"]["avgpool"]
     )
     
     logger = get_logger(output_dir=args.checkpoint_dir)
     callbacks = get_callbacks(
         output_dir=args.checkpoint_dir,
-        **clf_config["callbacks"]
+        **linear_config["callbacks"]
     )
     
     if args.resume_from:
@@ -75,7 +75,7 @@ def linear_eval(args):
         callbacks=callbacks,
         default_root_dir=args.checkpoint_dir,
         resume_from_checkpoint=args.resume_from,
-        **clf_config["trainer"]
+        **linear_config["trainer"]
     )
     
     trainer.fit(model=model, datamodule=datamodule)
