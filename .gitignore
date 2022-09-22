@@ -131,3 +131,5 @@ dmypy.json
 *.DS_Store
 
 test.*
+train_ssl.py
+linear_eval.py
